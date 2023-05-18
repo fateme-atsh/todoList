@@ -19,10 +19,14 @@
                 <i class="fa fa-search"></i>
             </div>
             <div class="list-container">
-                <ul id="list">
-                    <li>task</li>
+                <p class="no-task">There is no tasks yet.</p>
+                <ul class="list">
+                    <!-- <li class="list-item">task</li> -->
                 </ul>
-                <button id="new-task">+ Add New Task</button>
+                <div>
+                    <input type="text" placeholder="New Task..."></input>
+                    <button id="new-task" onclick={onClickAddNewTask()}>+ Add New Task</button>
+                </div>
             </div>
         </section>
     </body>
