@@ -6,7 +6,7 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>todo List</title>
-        <link rel="stylesheet" href="./assets/css/main.css" />
+        <link rel="stylesheet" href="css/main.css" />
     </head>
 
     <body>
@@ -15,7 +15,7 @@
                 <h3>Todo List</h3>
             </div>
             <div class="list-filter">
-                <input type="text" placeholder="Search Tasks..."></input>
+                <input class="filter" type="text" placeholder="Search Tasks..."></input>
                 <i class="fa fa-search"></i>
             </div>
             <div class="list-container">
@@ -23,15 +23,15 @@
                 <ul class="list">
                     <!-- <li class="list-item">task</li> -->
                 </ul>
-                <div>
-                    <input type="text" placeholder="New Task..."></input>
-                    <button id="new-task" onclick={onClickAddNewTask()}>+ Add New Task</button>
-                </div>
+                <form id="task-form" onsubmit={onSubmitNewTask(event)}>
+                    <input type="text" placeholder="New Task..." id="new-task-input"></input>
+                    <button type="submit" id="new-task-button">+ Add New Task</button>
+                </form>
             </div>
         </section>
     </body>
 
     <script src="https://kit.fontawesome.com/0855a789f8.js" crossorigin="anonymous"></script>
-    <script src="./assets/js/todoList.js"></script>
+    <script src="app.js"></script>
 
 </html>

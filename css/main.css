@@ -93,7 +93,12 @@ body {
     display: none;
 }
 
-.list-container div {
+.list-container .list-item {
+    padding-top: 10px;
+    display: flex;
+}
+
+.list-container form {
     display: flex;
     padding: 10px;
     flex-direction: column;
