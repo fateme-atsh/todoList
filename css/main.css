@@ -17,7 +17,7 @@ body {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    padding-top: 10%;
+    padding: 20px 0;
     width: 100%;
     font-size: 12px;
 }
@@ -47,7 +47,7 @@ body {
     display: flex;
     width: 90%;
     height: 10%;
-    padding: 0.5em;
+    padding: 1.1em 0.5em;
     margin-bottom: 0.5em;
     background-color: rgb(247, 246, 248);
     box-shadow: 1px 1px 20px 1px #acabab;
@@ -86,18 +86,21 @@ body {
     border-bottom-right-radius: 10px;
 }
 
-.list-container ul {
-    list-style-type: none;
+.list-container table {
     text-align: left;
     margin: 20px 10px;
     display: none;
 }
 
 .list-container .list-item {
-    padding-top: 10px;
+    padding: 5px 15px;
     display: flex;
+    justify-content: space-between;
+    background-color: rgb(212, 204, 221);
 }
-
+.list-container tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
 .list-container form {
     display: flex;
     padding: 10px;

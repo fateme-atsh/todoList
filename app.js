@@ -1,6 +1,6 @@
 //  SELECTED ELEMENTS
 let filter = document.querySelector('input.filter');
-let tasksList = document.querySelector('ul.list');
+let tasksList = document.querySelector('table.list');
 let noTask = document.querySelector('p.no-task');
 let takForm = document.querySelector('form#task-form');
 let newTaskInput = document.getElementById('new-task-input');
@@ -27,10 +27,11 @@ function getAllTasks() {
         tasksList.style.display = 'block';
         noTask.style.display = 'none';
 
-        tasksStoredArray.forEach(function (item) {
-            let task = document.createElement('li');
+        tasksStoredArray.forEach(function (item, index) {
+            let task = document.createElement('tr');
             task.className = 'list-item';
-            task.appendChild(document.createTextNode(item));
+            let span = task.appendChild(document.createElement('span'));
+            span.appendChild(document.createTextNode(item));
 
             // CREATE ICON ELEMENT
             let deleteIcon = document.createElement('i');
@@ -54,14 +55,14 @@ function onSubmitNewTask(event) {
         noTask.style.display = 'none';
 
         // CREATE LIST ELEMENT
-        let task = document.createElement('li');
+        let task = document.createElement('tr');
         task.className = 'list-item';
-        task.appendChild(document.createTextNode(newTaskInput.value));
+        let span = task.appendChild(document.createElement('span'));
+        span.appendChild(document.createTextNode(newTaskInput.value));
         // CREATE ICON ELEMENT
         let deleteIcon = document.createElement('i');
         deleteIcon.className = 'fa fa-trash-o';
         task.appendChild(deleteIcon);
-        console.log(task)
         tasksList.appendChild(task);
         tasksList.style.display = 'block';
 
@@ -87,4 +88,4 @@ function storeTaskInLocalStorage(task) {
     localStorage.setItem('tasks', JSON.stringify(tasks));
 }
 
-// localStorage.clear()
+localStorage.clear()
