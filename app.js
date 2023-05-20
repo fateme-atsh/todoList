@@ -140,9 +140,41 @@ function onClickEditItem(e) {
     e.preventDefault();
 
     if (e.target.classList.contains('edit-item')) {
-        let edit = e.target.parentElement.parentElement;
-        console.log(edit.textContent);
+        let text = e.target.parentElement.parentElement;
+        text.id = 'editItem';
+        // select
+        let selectedItem = document.querySelector('li#editItem');
+        // create new element
+        let div = document.createElement('div');
+        div.className = 'edit-input';
+        let editInput = document.createElement('input');
+        editInput.value = text.textContent;
+        div.appendChild(editInput);
+
+        // create icons
+        let iconsDiv = document.createElement('div');
+        editInput.appendChild(iconsDiv);
+        let confirmIcon = document.createElement('i');
+        confirmIcon.className = 'fa fa-close confirm-edited-item';
+        iconsDiv.appendChild(confirmIcon);
+        let cancelIcon = document.createElement('i');
+        cancelIcon.className = 'fa fa-check cancel-edited-item';
+        iconsDiv.appendChild(cancelIcon);
+        div.appendChild(iconsDiv);
+
+        console.log(div)
+        text.parentNode.replaceChild(div, selectedItem);
     };
 };
+
+// EDIT ITEM: CONFIRM FUNCTION
+function onClickConfirmButton(e) {
+
+}
+
+// EDIT ITEM: CANCEL FUNCTION
+function onClickCancelButton(e) {
+
+}
 
 // localStorage.clear()
