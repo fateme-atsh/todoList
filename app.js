@@ -4,7 +4,6 @@ let tasksList = document.querySelector('ul.list');
 let noTask = document.querySelector('p.no-task');
 let takForm = document.querySelector('form#task-form');
 let newTaskInput = document.getElementById('new-task-input');
-let newTaskButton = document.getElementById('new-task-button');
 
 // LOAD ALL EVENT LISTINERS
 loadEventListeners();
@@ -58,8 +57,16 @@ function getAllTasks() {
 // FILTER TASKS FUNCTION
 function filterTasks(e) {
     e.preventDefault();
+    const text = e.target.value.toLowerCase();
 
-    console.log(filter.value);
+    let allTasks = document.querySelectorAll('.list-item');
+    allTasks.forEach(function (item) {
+        let itemText = item.textContent.toLowerCase();
+        itemText.indexOf(text) != -1
+            ? item.style.display = 'flex'
+            : item.style.display = 'none'
+
+    })
 };
 
 // ADD NEW TASK FUNCTION
@@ -119,7 +126,7 @@ function onClickDeleteItem(e) {
     };
 };
 
-// DELETE SPESIFIC LIST ITEM FROM LOCALSTORAGE
+// DELETE SPESIFIC ITEM FROM LOCALSTORAGE
 function deleteItemFromLocalStorage(taskItem) {
     let localStorageArray = JSON.parse(localStorage.getItem('tasks'));
     localStorageArray.forEach(function (item, index) {
@@ -133,9 +140,41 @@ function onClickEditItem(e) {
     e.preventDefault();
 
     if (e.target.classList.contains('edit-item')) {
-        let edit = e.target.parentElement.parentElement;
-        console.log(edit.textContent);
+        let text = e.target.parentElement.parentElement;
+        text.id = 'editItem';
+        // select
+        let selectedItem = document.querySelector('li#editItem');
+        // create new element
+        let div = document.createElement('div');
+        div.className = 'edit-input';
+        let editInput = document.createElement('input');
+        editInput.value = text.textContent;
+        div.appendChild(editInput);
+
+        // create icons
+        let iconsDiv = document.createElement('div');
+        editInput.appendChild(iconsDiv);
+        let confirmIcon = document.createElement('i');
+        confirmIcon.className = 'fa fa-close confirm-edited-item';
+        iconsDiv.appendChild(confirmIcon);
+        let cancelIcon = document.createElement('i');
+        cancelIcon.className = 'fa fa-check cancel-edited-item';
+        iconsDiv.appendChild(cancelIcon);
+        div.appendChild(iconsDiv);
+
+        console.log(div)
+        text.parentNode.replaceChild(div, selectedItem);
     };
 };
+
+// EDIT ITEM: CONFIRM FUNCTION
+function onClickConfirmButton(e) {
+
+}
+
+// EDIT ITEM: CANCEL FUNCTION
+function onClickCancelButton(e) {
+
+}
 
 // localStorage.clear()
