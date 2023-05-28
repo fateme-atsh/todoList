@@ -141,29 +141,52 @@ function onClickEditItem(e) {
 
     if (e.target.classList.contains('edit-item')) {
         let text = e.target.parentElement.parentElement;
+        let allTasks = document.querySelectorAll('ul');
+        allTasks = tasksList.children;
+        console.log(allTasks)
         text.id = 'editItem';
-        // select
-        let selectedItem = document.querySelector('li#editItem');
-        // create new element
-        let div = document.createElement('div');
-        div.className = 'edit-input';
-        let editInput = document.createElement('input');
-        editInput.value = text.textContent;
-        div.appendChild(editInput);
 
-        // create icons
-        let iconsDiv = document.createElement('div');
-        editInput.appendChild(iconsDiv);
-        let confirmIcon = document.createElement('i');
-        confirmIcon.className = 'fa fa-close confirm-edited-item';
-        iconsDiv.appendChild(confirmIcon);
-        let cancelIcon = document.createElement('i');
-        cancelIcon.className = 'fa fa-check cancel-edited-item';
-        iconsDiv.appendChild(cancelIcon);
-        div.appendChild(iconsDiv);
+        [...allTasks].map(function (item, index) {
+            console.log(item)
+            if (item.textContent === text.textContent) {
+                // select
+                let selectedItem = document.querySelector('li#editItem');
+                // create new element
+                let div = document.createElement('div');
+                div.className = 'edit-input';
+                let editInput = document.createElement('input');
+                editInput.value = text.textContent;
+                div.appendChild(editInput);
+                // create icons
+                let iconsDiv = document.createElement('div');
+                editInput.appendChild(iconsDiv);
+                let confirmIcon = document.createElement('i');
+                confirmIcon.className = 'fa fa-close confirm-edited-item';
+                iconsDiv.appendChild(confirmIcon);
+                let cancelIcon = document.createElement('i');
+                cancelIcon.className = 'fa fa-check cancel-edited-item';
+                iconsDiv.appendChild(cancelIcon);
+                div.appendChild(iconsDiv);
+                text.parentNode.replaceChild(div, item);
+            } else {
+                // create new element
+                let li = document.createElement('li');
+                li.className = 'list-item';
+                li.appendChild(document.createTextNode(item.textContent));
+                // create icons
+                let div = document.createElement('div');
+                li.appendChild(div);
+                let deleteIcon = document.createElement('i');
+                deleteIcon.className = 'fa fa-trash-o delete-item';
+                div.appendChild(deleteIcon);
+                let editIcon = document.createElement('i');
+                editIcon.className = 'fa fa-pen edit-item';
+                div.appendChild(editIcon);
+                console.log(li)
+                item.parentNode.replaceChild(li, item);
+            }
 
-        console.log(div)
-        text.parentNode.replaceChild(div, selectedItem);
+        })
     };
 };
 
